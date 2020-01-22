@@ -1,3 +1,5 @@
+import React from "react";
+
 import "./styles.scss";
 import Confirm from "./Confirm";
 import Empty from "./Empty";

@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function Empty({ onAdd }) {
   return (
     <main className="appointment__add">
