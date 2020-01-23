@@ -15,12 +15,12 @@ export default function Form({
   const reset = () => {
     setName("");
     setInterviewer(null);
-  }
+  };
 
   const cancel = () => {
-    reset()
-    onCancel()
-  }
+    reset();
+    onCancel();
+  };
 
   return (
     <main className="appointment__card appointment__card--create">

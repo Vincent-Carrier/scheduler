@@ -1,15 +1,15 @@
 import React from "react";
-import classNames from 'classnames';
+import classNames from "classnames";
 import "components/DayListItem.scss";
 
 export default function DayListItem({ name, spots, selected, setDay }) {
-  const dayClass = classNames('day-list__item', {
-    'day-list__item--selected': selected,
-    'day-list__item--full': spots === 0,
+  const dayClass = classNames("day-list__item", {
+    "day-list__item--selected": selected,
+    "day-list__item--full": spots === 0
   });
 
   const formatSpots = spots =>
-    `${spots ? spots : 'no'} spot${spots === 1 ? '' : 's'} remaining`;
+    `${spots ? spots : "no"} spot${spots === 1 ? "" : "s"} remaining`;
 
   return (
     <li className={dayClass} onClick={() => setDay && setDay(name)}>
@@ -18,4 +18,3 @@ export default function DayListItem({ name, spots, selected, setDay }) {
     </li>
   );
 }
-
