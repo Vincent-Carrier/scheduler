@@ -1,31 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 import "components/Application.scss";
 import DayList from "components/DayList";
 import Appointment from "components/Appointment";
 
-const days = [
-  {
-    id: 1,
-    name: "Monday",
-    spots: 2
-  },
-  {
-    id: 2,
-    name: "Tuesday",
-    spots: 5
-  },
-  {
-    id: 3,
-    name: "Wednesday",
-    spots: 0
-  }
-];
 
 const appointments = [
   {
     id: 1,
-    time: "12pm",
+    time: "12pm"
   },
   {
     id: 2,
@@ -35,13 +19,13 @@ const appointments = [
       interviewer: {
         id: 1,
         name: "Sylvia Palmer",
-        avatar: "https://i.imgur.com/LpaY82x.png",
+        avatar: "https://i.imgur.com/LpaY82x.png"
       }
     }
   },
   {
     id: 3,
-    time: "2pm",
+    time: "2pm"
   },
   {
     id: 4,
@@ -51,18 +35,26 @@ const appointments = [
       interviewer: {
         id: 1,
         name: "Francis Bourguignon",
-        avatar: "https://i.imgur.com/LpaY82x.png",
+        avatar: "https://i.imgur.com/LpaY82x.png"
       }
     }
   },
   {
     id: 5,
-    time: "4pm",
-  },
+    time: "4pm"
+  }
 ];
 
-export default function Application(props) {
+export default function Application({}) {
   const [day, setDay] = useState("Monday");
+  const [days, setDays] = useState([]);
+
+  useEffect(() => {
+    axios.get("api/days")
+      .then(response => setDays(response.data))
+      .catch(err => console.log(err));
+  }, [])
+
 
   return (
     <main className="layout">
@@ -83,8 +75,9 @@ export default function Application(props) {
         />
       </section>
       <section className="schedule">
-        {appointments.map(apt =>
-          <Appointment key={apt.id} {...apt} /> )}
+        {appointments.map(apt => (
+          <Appointment key={apt.id} {...apt} />
+        ))}
         <Appointment key="last" time="5pm" />
       </section>
     </main>
