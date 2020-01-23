@@ -9,13 +9,18 @@ import Header from "./Header";
 import Show from "./Show";
 import Status from "./Status";
 
-export default function Appointment({time, interview}) {
+export default function Appointment({ time, interview }) {
   return (
     <article className="appointment">
       <Header time={time} />
-      {interview ?
-        <Show student={interview.student} interviewer={interview.interviewer.name} />
-        : <Empty />}
+      {interview ? (
+        <Show
+          student={interview.student}
+          interviewer={interview.interviewer.name}
+        />
+      ) : (
+        <Empty />
+      )}
     </article>
   );
 }
